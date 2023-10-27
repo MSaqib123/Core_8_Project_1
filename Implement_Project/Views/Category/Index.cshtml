@@ -1,6 +1,13 @@
 ﻿@model List<Category>
 <div class="container">
 
+    @*______________ Notificatin Message - TempDate __________________ *@
+    @*for Single Request*@
+    @if (TempData["Success"] != null)
+    {
+        <h3 class="text-success">@TempData["Success"]</h3>
+    }
+
     <div class="d-flex justify-content-between align-content-center align-items-center my-4 ">
         <h1>Categories</h1>
         <a class="btn btn-primary" asp-action="Create" asp-controller="Category">Create</a>

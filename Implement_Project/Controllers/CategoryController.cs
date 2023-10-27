@@ -40,6 +40,7 @@ namespace Implement_Project.Controllers
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
+                TempData["Success"] = "Inserted Successfuly";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -74,6 +75,7 @@ namespace Implement_Project.Controllers
                 {
                     _db.Categories.Update(obj);
                     _db.SaveChanges();
+                    TempData["Success"] = "Updated Successfuly";
                     return RedirectToAction("Index");
                 }
             }
