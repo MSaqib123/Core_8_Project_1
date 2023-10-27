@@ -3,10 +3,17 @@
 
     @*______________ Notificatin Message - TempDate __________________ *@
     @*for Single Request*@
-    @if (TempData["Success"] != null)
+    @*if (TempData["Success"] != null)
     {
         <h3 class="text-success">@TempData["Success"]</h3>
-    }
+    }*@
+
+    @*
+    =======================================================================
+    ____________________ Partial View  ==  Shifting to  ___________________
+    =======================================================================
+    *@
+    <partial name="_Notification" />
 
     <div class="d-flex justify-content-between align-content-center align-items-center my-4 ">
         <h1>Categories</h1>
