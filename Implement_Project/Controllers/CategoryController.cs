@@ -1,6 +1,7 @@
 ﻿using Implement_Project.Data;
 using Implement_Project.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Implement_Project.Controllers
 {
@@ -26,6 +27,10 @@ namespace Implement_Project.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name","Name and DisplayOrder can not be same");
+            }
             //________ 1. Server Side Validation ____________
             if (ModelState.IsValid)
             {
