@@ -5,8 +5,20 @@
 
         <h1>Add Category</h1>
 
-
+        @*
+            All
         <div asp-validation-summary="All"></div>
+        *@
+
+        @* 
+            Model Only 
+        <div asp-validation-summary="ModelOnly"></div>
+        *@
+
+        @*
+            None
+        *@
+        <div asp-validation-summary="None"></div>
 
         <div class="col-6 my-4">
             <label class="form-label" asp-for="Name"></label>

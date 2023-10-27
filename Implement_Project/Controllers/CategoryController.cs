@@ -31,6 +31,10 @@ namespace Implement_Project.Controllers
             {
                 ModelState.AddModelError("name","Name and DisplayOrder can not be same");
             }
+            if (obj.Name.ToLower() == "test")
+            {
+                ModelState.AddModelError("", "Name and DisplayOrder can not be same");
+            }
             //________ 1. Server Side Validation ____________
             if (ModelState.IsValid)
             {
