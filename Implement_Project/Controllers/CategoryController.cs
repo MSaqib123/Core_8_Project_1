@@ -26,15 +26,14 @@ namespace Implement_Project.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-
             //________ 1. Server Side Validation ____________
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
-                
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View(obj);
         }
 
         [HttpGet]
@@ -59,12 +58,15 @@ namespace Implement_Project.Controllers
         [HttpPost]  
         public IActionResult Edit(Category obj)
         {
-            //___ for only F.K Find ____
-            if (obj.CategoryId > 0)
+            if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                //___ for only F.K Find ____
+                if (obj.CategoryId > 0)
+                {
+                    _db.Categories.Update(obj);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
             return View(obj);
         }
