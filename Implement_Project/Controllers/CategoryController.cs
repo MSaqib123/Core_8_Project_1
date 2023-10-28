@@ -2,6 +2,7 @@
 using Implement_Project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 namespace Implement_Project.Controllers
 {
@@ -27,14 +28,23 @@ namespace Implement_Project.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
+            //_______________ 2. Customer Validation ________________
+            //display order
             if (obj.Name == obj.DisplayOrder.ToString())
             {
                 ModelState.AddModelError("name","Name and DisplayOrder can not be same");
             }
+            //unique name
+            if (_db.Categories.Any(e => e.Name == obj.Name))
+            {
+                ModelState.AddModelError("name", "Name can not be same");
+            }
+            //Validation_Summery_works
             if (obj.Name.ToLower() == "test")
             {
                 ModelState.AddModelError("", "Name and DisplayOrder can not be same");
             }
+
             //________ 1. Server Side Validation ____________
             if (ModelState.IsValid)
             {
@@ -68,6 +78,24 @@ namespace Implement_Project.Controllers
         [HttpPost]  
         public IActionResult Edit(Category obj)
         {
+            //_______________ 2. Customer Validation ________________
+            //display order
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "Name and DisplayOrder can not be same");
+            }
+            //unique name
+            if (_db.Categories.Any(e => e.Name == obj.Name))
+            {
+                ModelState.AddModelError("name", "Name can not be same");
+            }
+            //Validation_Summery_works
+            if (obj.Name.ToLower() == "test")
+            {
+                ModelState.AddModelError("", "Name and DisplayOrder can not be same");
+            }
+
+            //_______________ 1. Server Side Validation _________________
             if (ModelState.IsValid)
             {
                 //___ for only F.K Find ____
